@@ -8,10 +8,13 @@ This is a list of useful WordPress ACF plugin snippets and functions that I ofte
 
 ***Basic Fields***
 
+- [Display A Field](#display-a-field)
+- [Retrieving A Field As A Variable](#retrieving-a-field-as-a-variable)
 - [Get A Field By Name](#get-a-field-by-name)
 - [Get And Format A Date Field](#get-and-format-a-date-field)
 - [Field Conditional Also Used for True or False Fields](#field-conditional-also-used-for-true-or-false-fields)
 - [Get A Field By Name Within Repeater (Flexible)](#get-a-field-by-name-within-repeater-flexible)
+- [Using Conditional Statements](#using-conditional-statements)
 
 ***Image Fields***
 
@@ -52,6 +55,18 @@ This is a list of useful WordPress ACF plugin snippets and functions that I ofte
 - [Query A Post Type On A Field Value And Loop Over Posts](#query-a-post-type-on-a-field-value-and-loop-over-posts)
 
 ## Basic Fields
+
+### Display A Field
+
+```php
+<p><?php the_field('field_name'); ?></p>
+```
+
+### Retrieving A Field As A Variable
+
+```php 
+<?php $variable = get_field('field_name'); ?> 
+```
 
 ### Get A Field By Name
 
@@ -101,6 +116,20 @@ This is a list of useful WordPress ACF plugin snippets and functions that I ofte
 <?php endif; ?>
 ```
 
+### Using Conditional Statements
+
+```php
+ /**
+  * Using Conditional Statements
+  * get_field returns false if (value == “” || value == null || value == false)
+  */
+<?php
+  if( get_field('field_name') ) {
+	    echo '<p>' . get_field('field_name') . '</p>';
+  }
+?>
+```
+
 ## Image Fields
 
 ### Image Field With A Return Value Of "Image URL"
@@ -109,7 +138,6 @@ This is a list of useful WordPress ACF plugin snippets and functions that I ofte
 /**
  * Image Field With A Return Value Of "Image URL"
  */
- 
 <?php if ( get_field('field_name') ) : ?>
     <img src="<?php the_field('field_name'); ?>" alt="<?php the_field(''); ?>">
 <?php endif; ?>
@@ -121,7 +149,6 @@ This is a list of useful WordPress ACF plugin snippets and functions that I ofte
 /**
  * Image Field With A Return Value Of "Image ID"
  */
- 
 <?php
   if ( get_field('field_name') ) {
     $attachment_id = get_field('field_name');
@@ -137,7 +164,6 @@ This is a list of useful WordPress ACF plugin snippets and functions that I ofte
 /**
  * Image Field With A Return Value Of "Image Object"
  */
- 
 <?php if ( get_field('field_name') ) : $image = get_field('field_name'); ?>
 
   <!-- Full size image -->
