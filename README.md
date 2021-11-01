@@ -1,6 +1,55 @@
 # Useful ACF code snippets
 
-This is a list of useful WordPress ACF plugin snippets.
+This is a list of useful WordPress ACF plugin snippets and functions that I often reference to enhance or clean up my sites. 
+
+**Note:** Please be careful and make backups!
+
+**WordPress ACF**
+
+***Basic Fields***
+
+- [Get A Field By Name](#get-a-field-by-name)
+- [Get And Format A Date Field](#get-and-format-a-date-field)
+- [Field Conditional Also Used for True or False Fields](#field-conditional-also-used-for-true-or-false-fields)
+- [Get A Field By Name Within Repeater (Flexible)](#get-a-field-by-name-within-repeater-flexible)
+
+***Image Fields***
+
+- [Image Field With A Return Value Of "Image URL"](#image-field-with-a-return-value-of-image-url)
+- [Image Field With A Return Value Of "Image ID"](#image-field-with-a-return-value-of-image-id)
+- [Image Field With A Return Value Of "Image Object"](#image-field-with-a-return-value-of-image-object)
+
+***File Fields***
+
+- [File Field With A Return Value Of "File URL"](#file-field-with-a-return-value-of-file-url)
+- [File Field With A Return Value Of "File ID"](#file-field-with-a-return-value-of-file-id)
+- [File Field With A Return Value Of "File Object"](#file-field-with-a-return-value-of-file-object)
+- [Flexible Content Basic Field Returns 1 Row Deep](#flexible-content-basic-field-returns-1-row-deep)
+- [Flexible Content Nested Field Returns](#flexible-content-nested-field-returns)
+- [Flexible Content Basic Field Returns 1 Row Deep](#flexible-content-basic-field-returns-1-row-deep)
+
+***Relationship Field***
+
+- [Get A Relationship Field And Loop Over All Returned Posts](#get-a-relationship-field-and-loop-over-all-returned-posts)
+
+***Location Fields***
+
+- [Get The Street Address From A Location Field](#get-the-street-address-from-a-location-field)
+- [Get A Location Field And Convert It To A Static Google Map](#get-a-location-field-and-convert-it-to-a-static-google-map)
+- [Get A Location Field And Convert It To An Interactive Google Map](#get-a-location-field-and-convert-it-to-an-interactive-google-map)
+
+***Gravity Form Field***
+
+- [Display A Gravity Form](#display-a-gravity-form)
+
+***Repeater Field***
+
+- [Get And Loop Over A Repeater Field](#get-and-loop-over-a-repeater-field)
+- [Loop Over A Repeater Filed And Seperate Results Into Rows](#loop-over-a-repeater-filed-and-seperate-results-into-rows)
+
+***Queries***
+
+- [Query A Post Type On A Field Value And Loop Over Posts](#query-a-post-type-on-a-field-value-and-loop-over-posts)
 
 ## Basic Fields
 
@@ -28,7 +77,7 @@ This is a list of useful WordPress ACF plugin snippets.
 <?php endif; ?>
 ```
 
-### Field Conditional / Also Used for True/False Fields
+### Field Conditional Also Used for True or False Fields
 
 ```php
 /**
@@ -40,7 +89,7 @@ This is a list of useful WordPress ACF plugin snippets.
 <?php endif; ?>
 ```
 
-### Get A Field By Name Within Repeater/Flexible
+### Get A Field By Name Within Repeater (Flexible)
 
 ```php
 /**
@@ -157,11 +206,11 @@ This is a list of useful WordPress ACF plugin snippets.
 <?php endif; ?>
 ```
 
-### Flexible Content Nested Field Returns The Below:
+### Flexible Content Nested Field Returns
 
 ```php
 /**
- * Flexible Content Nested Field Returns The Below:
+ * Flexible Content Nested Field Returns
  */
 <?php if( have_rows('field_name') ): ?>
     <?php while ( have_rows('field_name') ) : the_row(); ?>
@@ -242,7 +291,7 @@ This is a list of useful WordPress ACF plugin snippets.
 <?php endif; ?>
 ```
 
-### Get A Lcation Field And Convert It To An Interactive Google Map
+### Get A Location Field And Convert It To An Interactive Google Map
 
 ```php
 /**
@@ -284,11 +333,11 @@ This is a list of useful WordPress ACF plugin snippets.
 
 ## Gravity Form Field
 
-### Display A Gravity form The parameters for gravity_form() are outlined in the Gravity Forms documentation.
+### Display A Gravity Form
 
 ```php
 /**
- * Display a Gravity form.
+ * Display a Gravity form
  * The parameters for gravity_form() are outlined in the Gravity Forms documentation
  */
 <?php if ( get_field('field_name') ) :
@@ -317,7 +366,7 @@ This is a list of useful WordPress ACF plugin snippets.
 <?php endif; ?>
 ```
 
-### Loop Over A Рepeater Filed And Seperate Results Into Rows
+### Loop Over A Repeater Filed And Seperate Results Into Rows
 
 ```php
 /**
