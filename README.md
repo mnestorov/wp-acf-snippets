@@ -54,6 +54,10 @@ This is a list of useful WordPress ACF plugin snippets and functions that I ofte
 
 - [Query A Post Type On A Field Value And Loop Over Posts](#query-a-post-type-on-a-field-value-and-loop-over-posts)
 
+***Misc***
+
+- var_dump The Field Contents Wrapped In 'pre' tags
+
 ## Basic Fields
 
 ### Display A Field
@@ -452,4 +456,14 @@ $query = new WP_Query( $args );
 <?php endif; ?>
 
 <?php wp_reset_query(); ?>
+```
+
+## Misc
+
+### var_dump The Field Contents Wrapped In 'pre' tags
+
+```php
+<pre>
+    <?php var_dump(get_field('field_name')); die(); ?>
+</pre>
 ```
