@@ -1,6 +1,6 @@
 # Useful WordPress ACF code snippets
 
-This is a list of useful WordPress ACF plugin snippets and functions that I often reference to enhance or clean up my sites. 
+A compilation of WordPress ACF plugin snippets and functions for developers who wants to create their own themes.
 
 **Note:** Please be careful and make backups!
 
