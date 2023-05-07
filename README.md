@@ -1,12 +1,10 @@
-# Useful ACF code snippets
+# Useful WordPress ACF code snippets
 
 This is a list of useful WordPress ACF plugin snippets and functions that I often reference to enhance or clean up my sites. 
 
 **Note:** Please be careful and make backups!
 
-**WordPress ACF**
-
-***Basic Fields***
+## Basic Fields
 
 - [Display A Field](#display-a-field)
 - [Retrieving A Field As A Variable](#retrieving-a-field-as-a-variable)
@@ -16,13 +14,21 @@ This is a list of useful WordPress ACF plugin snippets and functions that I ofte
 - [Get A Field By Name Within Repeater (Flexible)](#get-a-field-by-name-within-repeater-flexible)
 - [Using Conditional Statements](#using-conditional-statements)
 
-***Image Fields***
+## Color Picker Field
+
+- [Display a color picker field value](#display-a-color-picker-field-value)
+
+## Image Fields
 
 - [Image Field With A Return Value Of "Image URL"](#image-field-with-a-return-value-of-image-url)
 - [Image Field With A Return Value Of "Image ID"](#image-field-with-a-return-value-of-image-id)
 - [Image Field With A Return Value Of "Image Object"](#image-field-with-a-return-value-of-image-object)
 
-***File Fields***
+## Gallery Field
+
+- [Loop through a gallery field and display images](#loop-through-a-gallery-field-and-display-images)
+
+## File Fields
 
 - [File Field With A Return Value Of "File URL"](#file-field-with-a-return-value-of-file-url)
 - [File Field With A Return Value Of "File ID"](#file-field-with-a-return-value-of-file-id)
@@ -31,32 +37,49 @@ This is a list of useful WordPress ACF plugin snippets and functions that I ofte
 - [Flexible Content Nested Field Returns](#flexible-content-nested-field-returns)
 - [Flexible Content Basic Field Returns 1 Row Deep](#flexible-content-basic-field-returns-1-row-deep)
 
-***Relationship Field***
+## Embed Field
+
+- [Display an embed field](#display-an-embed-field)
+
+## Relationship Field
 
 - [Get A Relationship Field And Loop Over All Returned Posts](#get-a-relationship-field-and-loop-over-all-returned-posts)
 
-***Location Fields***
+## Location Fields
 
 - [Get The Street Address From A Location Field](#get-the-street-address-from-a-location-field)
 - [Get A Location Field And Convert It To A Static Google Map](#get-a-location-field-and-convert-it-to-a-static-google-map)
 - [Get A Location Field And Convert It To An Interactive Google Map](#get-a-location-field-and-convert-it-to-an-interactive-google-map)
 
-***Gravity Form Field***
+## Gravity Form Field
 
 - [Display A Gravity Form](#display-a-gravity-form)
 
-***Repeater Field***
+## Repeater Field
 
 - [Get And Loop Over A Repeater Field](#get-and-loop-over-a-repeater-field)
+- [Get and loop over a repeater field with subfields](#get-and-loop-over-a-repeater-field-with-subfields)
 - [Loop Over A Repeater Filed And Seperate Results Into Rows](#loop-over-a-repeater-filed-and-seperate-results-into-rows)
 
-***Queries***
+## Taxonomy Fields
+
+- [Get taxonomy field as a list of terms](#get-taxonomy-field-as-a-list-of-terms)
+- [Get taxonomy field as a comma-separated list of terms](#get-taxonomy-field-as-a-comma-separated-list-of-terms)
+
+## Queries
 
 - [Query A Post Type On A Field Value And Loop Over Posts](#query-a-post-type-on-a-field-value-and-loop-over-posts)
 
-***Misc***
+## WYSIWYG Editor Field
+
+- [Display the content of a WYSIWYG editor field](#display-the-content-of-a-WYSIWYG-editor-field)
+- [Get and format a date field with a custom format](#get-and-format-a-date-field-with-a-custom-format)
+
+## Misc
 
 - var_dump The Field Contents Wrapped In 'pre' tags
+
+---
 
 ## Basic Fields
 
@@ -134,6 +157,20 @@ This is a list of useful WordPress ACF plugin snippets and functions that I ofte
 ?>
 ```
 
+## Color Picker Field
+
+### Display a color picker field value
+
+```php
+/**
+ * Display a color picker field value
+ */
+$color = get_field('color_picker_field_name');
+if ($color) {
+    echo '<div style="background-color:' . $color . ';">Some content</div>';
+}
+```
+
 ## Image Fields
 
 ### Image Field With A Return Value Of "Image URL"
@@ -177,6 +214,24 @@ This is a list of useful WordPress ACF plugin snippets and functions that I ofte
   <img src="<?php echo $image['sizes']['thumbnail']; ?>" alt="<?php echo $image['alt']; ?>"/>
 
 <?php endif; ?>
+```
+
+## Gallery Field
+
+### Loop through a gallery field and display images
+
+```php
+/**
+ * Loop through a gallery field and display images
+ */
+$images = get_field('gallery_field_name');
+if ($images) {
+    echo '<div class="gallery">';
+    foreach ($images as $image) {
+        echo '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" />';
+    }
+    echo '</div>';
+}
 ```
 
 ## File Fields
@@ -272,6 +327,20 @@ This is a list of useful WordPress ACF plugin snippets and functions that I ofte
         <?php endif; ?>
     <?php endwhile; ?>
 <?php endif; ?>
+```
+
+## Embed Field
+
+### Display an embed field
+
+```php
+/**
+ * Display an embed field (e.g. video or audio)
+ */
+$embed = get_field('embed_field_name');
+if ($embed) {
+    echo $embed;
+}
 ```
 
 ## Relationship Field
@@ -396,6 +465,22 @@ This is a list of useful WordPress ACF plugin snippets and functions that I ofte
 <?php endif; ?>
 ```
 
+### Get and loop over a repeater field with subfields
+
+```php
+/**
+ * Get and loop over a repeater field with subfields
+ */
+if (have_rows('repeater_field_name')) {
+    while (have_rows('repeater_field_name')) {
+        the_row();
+        $subfield_1 = get_sub_field('subfield_1');
+        $subfield_2 = get_sub_field('subfield_2');
+        // Output or use subfields as needed
+    }
+}
+```
+
 ### Loop Over A Repeater Filed And Seperate Results Into Rows
 
 ```php
@@ -422,6 +507,40 @@ This is a list of useful WordPress ACF plugin snippets and functions that I ofte
   </div>
 
 <?php endif; ?>
+```
+
+## Taxonomy Fields
+
+### Get taxonomy field as a list of terms
+
+```php
+/**
+ * Get taxonomy field as a list of terms
+ */
+$taxonomy_terms = get_field('taxonomy_field_name');
+if ($taxonomy_terms) {
+    echo '<ul>';
+    foreach ($taxonomy_terms as $term) {
+        echo '<li><a href="' . get_term_link($term) . '">' . $term->name . '</a></li>';
+    }
+    echo '</ul>';
+}
+```
+
+### Get taxonomy field as a comma-separated list of terms
+
+```php
+/**
+ * Get taxonomy field as a comma-separated list of terms
+ */
+$taxonomy_terms = get_field('taxonomy_field_name');
+if ($taxonomy_terms) {
+    $term_names = array();
+    foreach ($taxonomy_terms as $term) {
+        $term_names[] = $term->name;
+    }
+    echo implode(', ', $term_names);
+}
 ```
 
 ## Queries
@@ -458,6 +577,33 @@ $query = new WP_Query( $args );
 <?php wp_reset_query(); ?>
 ```
 
+## WYSIWYG Editor Field
+
+### Display the content of a WYSIWYG editor field
+
+```php
+/**
+ * Display the content of a WYSIWYG editor field
+ */
+$wysiwyg_content = get_field('wysiwyg_field_name');
+if ($wysiwyg_content) {
+    echo $wysiwyg_content;
+}
+```
+
+### Get and format a date field with a custom format
+
+```php
+/**
+ * Get and format a date field with a custom format
+ */
+$date_field = get_field('date_field_name', false, false);
+if ($date_field) {
+    $date = new DateTime($date_field);
+    echo $date->format('F j, Y');
+}
+```
+
 ## Misc
 
 ### var_dump The Field Contents Wrapped In 'pre' tags
@@ -467,3 +613,9 @@ $query = new WP_Query( $args );
     <?php var_dump(get_field('field_name')); die(); ?>
 </pre>
 ```
+
+---
+
+## License
+
+This project is released under the MIT License.
