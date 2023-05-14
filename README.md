@@ -1,4 +1,6 @@
-# Useful WordPress ACF code snippets
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/wordpress/wordpress.png" width="100" alt="Laravel Logo"></a></p>
+
+# WordPress ACF snippets
 
 A compilation of WordPress ACF plugin snippets and functions for developers who wants to create their own themes.
 
