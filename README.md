@@ -2,7 +2,7 @@
 
 # WordPress - ACF Snippets
 
-[![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
+![Licence](https://img.shields.io/badge/Unlicense-red)
 
 ## Overview
 
@@ -624,4 +624,4 @@ if ($date_field) {
 
 ## License
 
-This project is released under the MIT License.
+This repository is unlicense[d], so feel free to fork.
